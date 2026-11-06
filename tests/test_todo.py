@@ -64,8 +64,18 @@ def test_search_is_case_insensitive(todo):
 
 
 def test_stats_on_empty_list(todo):
-    # Expected to fail: see ISSUES.md #2
     assert todo.stats()["percent"] == 0.0
+
+
+def test_stats_percent_with_tasks(todo):
+    first = todo.add("first")
+    todo.add("second")
+    todo.complete(first.id)
+    stats = todo.stats()
+    assert stats["total"] == 2
+    assert stats["done"] == 1
+    assert stats["open"] == 1
+    assert stats["percent"] == 50.0
 
 
 def test_ids_unique_after_reload(todo):

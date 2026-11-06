@@ -98,13 +98,14 @@ class TodoList:
     # ------------------------------------------------------------------ stats
 
     def stats(self) -> dict:
+        total = len(self.tasks)
         done = sum(1 for t in self.tasks if t.done)
-        # BUG: divides by len(self.tasks) without guarding the empty case.
+        percent = round(done / total * 100, 1) if total else 0.0
         return {
-            "total": len(self.tasks),
+            "total": total,
             "done": done,
-            "open": len(self.tasks) - done,
-            "percent": round(done / len(self.tasks) * 100, 1),
+            "open": total - done,
+            "percent": percent,
         }
 
     def render(self) -> str:
