@@ -18,17 +18,6 @@ todo.add("c")        # id 2 again — collides with "b"
 Ids should be stable and never reused for the lifetime of the file. See
 `tests/test_todo.py::test_ids_unique_after_reload`.
 
-## 2. `stats()` crashes on an empty list
-
-`stats()` divides by `len(self.tasks)` without guarding the empty case, so a
-fresh list raises `ZeroDivisionError`. This is reachable from the CLI:
-
-```sh
-python3 src/cli.py --file /tmp/empty.json stats
-```
-
-The percentage for an empty list should be `0.0`.
-
 ## 3. `render()` sorts completed tasks unpredictably
 
 `sorted(self.tasks, key=lambda t: t.done)` only partitions done from not-done;

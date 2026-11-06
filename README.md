@@ -17,7 +17,7 @@ Tasks are stored as JSON in `~/.todo.json`, or wherever `--file` points.
 python3 -m pytest tests/ -v
 ```
 
-Two tests currently fail on purpose — they cover the first two entries in
+One test currently fails on purpose — it covers the first entry in
 [ISSUES.md](ISSUES.md).
 
 ## Known issues
